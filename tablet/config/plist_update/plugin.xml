@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+		id="net.standupweb.plist_update"
+		version="0.0.1">
+	<name>plist file updater</name>
+	<description>Update fields in the plist file according to http://stackoverflow.com/questions/22769111/add-entry-to-ios-plist-file-via-cordova-config-xml</description>
+	<platform name="ios">
+		<config-file target="*-Info.plist" parent="UIStatusBarHidden~ipad" overwrite="true">
+			<true/>
+		</config-file>
+	</platform>
+</plugin>

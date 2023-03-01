@@ -1,0 +1,52 @@
+x coming back from levelSelection should restore level
+x Flash tiles in the right place after each move
+x create task to generate equivalent tiles
+x bug: a thin layer of green remains after feedback
+x tap to reveal status
+x save tiles not path
+x previewCount and tapCount difficulties
+x noborder option
+x loading screen on the mainCanvas (will be deleted on first repaint)
+x Change tap detection
+x Display ad for 25 sec only
+x back button
+x show tap count and preview counts at the beginning of the level
+x Show record in the move icon
+x Little animation when you beat the record
+x Reduce animLoop calls
+x bug when leavefeedback=true should remove feedback on touch
+x freeze bug on ipod
+x Levels to change:
+		Xlv no feedback
+		Xlvii no feedback
+		Xlix limited preview count
+		Lix no feedback
+		Lx no feedback, preview count = 5
+		Lxiv no border, tap count 5
+		Lxvii tap count 3
+		Lxix preview count 9
+		Lxx 2 preview no tap
+		Lxxiii green zone always visible
+		Lxxiv not good
+x try mixing it up a little better
+x make level 58 work (test generateEquivalentTiles.coffee with simple pic)
+x generateEquivalentTiles.coffee takes leave border into account
+x correct direction if slide end up happening in the other direction
+x Replace set timeout
+x Preview x5 tap x5
+x Make tap a button
+x AI:
+	1- get score
+  2- check for every uncomplete col, every  uncomplete row, move +1 to length-1
+  3- Stop if complete
+  4- if after 3 moves, no score improvement, abandon branch
+  5- Go back to 1
+x bug 23 6x5 but overlay  4x5??
+x speedup loading, by not loading all level pics
+x Smoother intro
+x decrease preview only if reached full size
+x Move counted only when change col/row
+x Bug: Delete border on move 
+x Bug: Feedback cross not blinking anymore?? 
+x Feedback green 0
+Mintap min preview 1

@@ -1,0 +1,124 @@
+<!doctype html>
+<html class="no-js">
+	<head>
+		<meta charset="utf-8">
+		<title>Phang - phone - canvas</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<meta property="og:title" content="Pulz" />
+		<meta property="og:description" content="Keep your brain in motion" />
+		<style>
+			body {
+				overflow-y: scroll;
+				-webkit-overflow-scrolling: touch;
+				padding: 0;
+				background: #000;
+				font-family: helvetica, arial;
+				font-size: 25px;
+				color: #ccc;
+				text-transform: uppercase;
+			}
+			header {
+				width: 100%;
+				box-shadow: 0 0 2px #ccc;
+				text-align: center;
+				padding: 15px;
+				margin-bottom: 20px;
+			}
+			#cheat {
+				height: 100px;
+			}
+			#container div {
+				width: 50%;
+				display: inline-block;
+				position: relative;
+				height: 0;
+				padding-bottom: 50%;
+				overflow: hidden;
+			}
+			#container img {
+				width: 90%;
+				margin: 5%;
+			}
+			span {
+				position: absolute;
+				top: 20px;
+				left: 20px;
+				font-size: 35px;
+				color: #fff;
+				text-shadow: 0 0 5px #000;
+			}
+
+		</style>
+		<script>
+
+			gotoLevel = function(levelNumber) {
+				localStorage.currentLevel = levelNumber;
+				localStorage.snapshotLevel = -1;
+				location.href = "../index.html";
+			};
+
+			initActions = function() {
+				var cheatEl = document.getElementById("cheat");
+				var backEl = document.getElementById("back");
+				var cheatReached = 8;
+				var cheatClickCount = 0;
+				var mustClickOnCheat = true;
+				var checkReached = function(){
+					cheatClickCount++;
+					mustClickOnCheat = !mustClickOnCheat;
+					console.log(cheatClickCount);
+					if (cheatClickCount === cheatReached) {
+						localStorage.lastAvailableLevel = 99;
+						location.reload();
+					}
+				};
+				cheatEl.addEventListener("touchstart", function(){
+					if (mustClickOnCheat) {
+						checkReached();
+					} else {
+						cheatClickCount = 1;
+					}
+				});
+				backEl.addEventListener("touchstart", function(){
+					if (mustClickOnCheat) {
+						history.back();
+					} else {
+						checkReached();
+					}
+				});
+			};
+
+			document.addEventListener("DOMContentLoaded", function() {
+				var html = "";
+				var basePath = "../images/";
+				var thumbsPath = basePath + "thumbs/";
+				var availableLevels = (parseInt(localStorage.lastAvailableLevel, 10) || 0) + 1;
+				while(availableLevels) {
+					(function(i){
+						var img = new Image;
+						var name = "level" + i;
+						img.onload = function() {
+							var imgEl = document.getElementById(name);
+							imgEl.setAttribute("src", thumbsPath + name + "-thumb.png");
+						};
+						img.onerror = function() {
+							var imgEl = document.getElementById(name);
+							imgEl.setAttribute("src", thumbsPath + name + "-thumb.jpg");
+						};
+						img.src = thumbsPath + name + "-thumb.png";
+					})(availableLevels)
+					html += "<div onclick=\"gotoLevel(" + (availableLevels - 1) + ")\"><img src=\"" + basePath + "noise.jpg\" id=\"level" + (availableLevels) + "\" /><span>" + availableLevels + "</span></div>"
+					availableLevels--
+				}
+				var containerEl = document.getElementById("container");
+				containerEl.innerHTML = containerEl.innerHTML + html;
+				initActions();
+			});
+		</script>
+	</head>
+	<body>
+		<div id="cheat"></div>
+		<div id="container"><div id="back"><img src="../images/back.png"></div></div>
+	</body>
+</html>

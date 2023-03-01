@@ -1,0 +1,12 @@
+module.exports =
+	headerHeight: 50
+	footerHeight: 120
+	margin: 5
+	tileBorderMargin: 6
+	backgroundColor: "#000000"
+	tileBorderColor: "#ffffff"
+	feedbackColor: "#7ad273"
+	hintColor: "#edd23e"
+	crossColor: "#ff0000"
+	freeVersion: true
+	freeLevelCount: 1
